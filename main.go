@@ -1,14 +1,12 @@
 package main
 
 import (
-	"math/rand"
+	"fmt"
 
-	"github.com/santos95mat/go-learning/fizzBuzz"
+	"github.com/santos95mat/go-learning/tenisPolar"
 )
 
 func main() {
-	for i := 0; i < 10; i++ {
-		x := rand.Intn(100)
-		fizzBuzz.FizzBuzz(x)
-	}
+
+	fmt.Println(tenisPolar.Crypto("Ou fua li ciri di deli ili"))
 }
