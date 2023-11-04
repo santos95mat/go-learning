@@ -19,6 +19,10 @@ type User struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
+type Unauthorized struct {
+	Message string `json:"message"`
+}
+
 func GetUsers() {
 	res, err := http.Get("http://localhost:3000/v1/user")
 
@@ -37,7 +41,14 @@ func GetUsers() {
 	err = json.Unmarshal(body, &users)
 
 	if err != nil {
-		log.Fatalln(err)
+		var unauthorized Unauthorized
+		err = json.Unmarshal(body, &unauthorized)
+
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		log.Printf("%+v\n", unauthorized)
 	}
 	for _, user := range users {
 		log.Printf("%+v\n", user)
